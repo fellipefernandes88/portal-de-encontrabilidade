@@ -1,0 +1,81 @@
+@if (categoryPage$ | async; as page) {
+
+<section class="category-header">
+
+    <nav class="breadcrumb" aria-label="Caminho da página">
+
+        <a routerLink="/">Início</a>
+        <span>/</span>
+        <a routerLink="/noticias">Notícias</a>
+        <span>/</span>
+        <span>{{ page.category.name }}</span>
+
+    </nav>
+
+    <h1>{{ page.category.name }}</h1>
+
+    <p>
+        Notícias, atualizações e conteúdos publicados no assunto <strong>{{ page.category.name }}</strong>.
+    </p>
+
+</section>
+
+@if (page.notices.data.length > 0) {
+
+    <section class="news-grid" aria-label="Notícias do assunto">
+
+        @for (notice of page.notices.data; track notice.id) {
+
+            <mat-card class="news-card" appearance="outlined">
+
+                <img mat-card-image [src]="newsService.imageUrl(notice.path_image)" [alt]="notice.title" loading="lazy" />
+
+                <mat-card-content>
+                    <p class="date">
+                        {{ notice.created_at | date: 'dd/MM/yyyy' }}
+                    </p>
+
+                    <h2>
+                        <a [routerLink]="['/noticia', notice.slug]">
+                            {{ notice.title }}
+                        </a>
+                    </h2>
+
+                    <p>
+                        {{ notice.description }}
+                    </p>
+
+                </mat-card-content>
+
+                <mat-card-actions>
+
+                    <a mat-button color="primary" [routerLink]="['/noticia', notice.slug]"
+                        [attr.aria-label]="'Ler notícia: ' + notice.title">
+                        Ler notícia
+                    </a>
+
+                </mat-card-actions>
+
+            </mat-card>
+        }
+    </section>
+
+    <mat-paginator class="paginator" [length]="page.notices.total" [pageSize]="page.notices.per_page"
+        [pageIndex]="page.notices.current_page - 1" [hidePageSize]="true" [showFirstLastButtons]="true"
+        aria-label="Paginação de notícias" (page)="changePage($event, page.category.slug)"
+    />
+} @else {
+    <section class="empty-state">
+        <h2>Nenhuma notícia encontrada</h2>
+
+        <p>Ainda não existem notícias publicadas nesta categoria.</p>
+        
+        <a mat-flat-button color="primary" routerLink="/noticias">
+
+            Ver outras categorias
+        </a>
+    </section>
+}
+} @else {
+    <mat-progress-bar mode="indeterminate" />
+}

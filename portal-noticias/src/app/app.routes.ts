@@ -19,12 +19,12 @@ export const routes: Routes = [
           import('./public/pages/category-list/category-list-page.component')
             .then(m => m.CategoriesListPageComponent),
       },
-  //     {
-  //       path: 'noticias/:slug',
-  //       loadComponent: () =>
-  //         import('./public/pages/category-page/category-page.component')
-  //           .then(m => m.CategoryPageComponent),
-  //     },
+      {
+        path: 'noticias/:slug',
+        loadComponent: () =>
+          import('./public/pages/category-page/category-page.component')
+            .then(m => m.CategoryPageComponent),
+      },
       {
         path: 'noticia/:slug',
         loadComponent: () =>
