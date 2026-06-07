@@ -1,0 +1,111 @@
+@if (loadingInitial()) {
+    <mat-progress-bar mode="indeterminate" />
+} @else {
+
+<section class="home-page">
+    @if (highlight(); as featured) {
+
+    <section class="featured-area">
+        <article class="featured-news">
+            <a class="featured-image-link" [routerLink]="['/noticias', featured.slug]"
+                [attr.aria-label]="'Ler notícia: ' + featured.title">
+                <img [src]="newsService.imageUrl(featured.path_image)" [alt]="featured.title" fetchpriority="high" />
+            </a>
+
+            <div class="featured-content">
+                <p class="eyebrow">Notícia em destaque</p>
+
+                @if (featured.category) {
+                <a class="category-link" [routerLink]="['/noticias', featured.category.slug]">
+                    {{ featured.category.name }}
+                </a>
+                }
+
+                <h1>
+                    <a [routerLink]="['/noticias', featured.slug]">
+                        {{ featured.title }}
+                    </a>
+                </h1>
+
+                <p class="description">
+                    {{ featured.description }}
+                </p>
+
+                <p class="date">
+                    Publicado em {{ featured.created_at | date: 'dd/MM/yyyy HH:mm' }}
+                </p>
+
+                <a mat-flat-button color="primary" [routerLink]="['/noticia', featured.slug]">
+                    Ler notícia completa
+                </a>
+            </div>
+
+        </article>
+    </section>
+    }
+
+    <section class="latest-section">
+
+        <div class="section-header">
+            <div>
+                <p class="eyebrow">Mais notícias</p>
+                <h2>Últimas atualizações</h2>
+            </div>
+        </div>
+
+        <div class="latest-grid">
+            @for (notice of notices(); track notice.id) {
+
+                <mat-card class="small-news-card" appearance="outlined">
+
+                    <a class="small-image-link" [routerLink]="['/noticia', notice.slug]"
+                        [attr.aria-label]="'Ler notícia: ' + notice.title">
+                        <img mat-card-image [src]="newsService.imageUrl(notice.path_image)" [alt]="notice.title"
+                            loading="lazy" />
+                     </a>
+
+                <mat-card-content>
+                    @if (notice.category) {
+                        <a class="card-category" [routerLink]="['/noticias', notice.category.slug]">
+                            {{ notice.category.name }}
+                        </a>
+                    }
+
+                    <h3>
+                        <a [routerLink]="['/noticia', notice.slug]"
+                            aria-label="'Link para pagína com a notícia completa sobre'{{notice.title}}">
+                            {{ notice.title }}
+                        </a>
+                    </h3>
+
+                    <p class="card-description">
+                        {{ notice.description }}
+                    </p>
+
+                    <p class="date">
+                        {{ notice.created_at | date: 'dd/MM/yyyy' }}
+                    </p>
+
+
+                </mat-card-content>
+            </mat-card>
+            }
+        </div>
+
+        @if (loadingMore()) {
+            <div class="loading-more">
+                <mat-progress-bar mode="indeterminate" />
+                <p>Carregando mais notícias...</p>
+            </div>
+        }
+
+        @if (hasMore()) {
+            <div #loadMoreTrigger class="load-more-trigger" aria-hidden="true"></div>
+            } @else {
+            <p class="end-message">
+                Você chegou ao fim das notícias carregadas.
+            </p>
+        }
+    </section>
+</section>
+}

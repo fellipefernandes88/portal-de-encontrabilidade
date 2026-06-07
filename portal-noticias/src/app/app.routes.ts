@@ -6,13 +6,13 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./public/layout/public-layout.component')
         .then(m => m.PublicLayoutComponent),
-  //   children: [
-  //     {
-  //       path: '',
-  //       loadComponent: () =>
-  //         import('./public/pages/home/home-page.component')
-  //           .then(m => m.HomePageComponent),
-  //     },
+    children: [
+      {
+        path: '',
+        loadComponent: () =>
+          import('./public/pages/home/home-page.component')
+            .then(m => m.HomePageComponent),
+      },
   //     {
   //       path: 'noticias',
   //       loadComponent: () =>
@@ -31,10 +31,10 @@ export const routes: Routes = [
   //         import('./public/pages/notice-page/notice-page.component')
   //           .then(m => m.NoticePageComponent),
   //     },
-  //   ],
-  // },
-  // {
-  //   path: '**',
-  //   redirectTo: '',
+    ],
+  },
+  {
+    path: '**',
+    redirectTo: '',
   },
 ];
