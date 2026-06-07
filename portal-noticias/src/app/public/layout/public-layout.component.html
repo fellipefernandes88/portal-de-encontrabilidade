@@ -1,0 +1,101 @@
+<mat-sidenav-container class="layout-container">
+
+    <mat-sidenav #drawer class="mobile-sidenav" mode="over" position="start" fixedInViewport [autoFocus]="false">
+
+        <div class="sidenav-header">
+
+            <a class="brand" routerLink="/" aria-label="Ir para a página inicial do portal" (click)="drawer.close()">
+                {{ portal.name }}
+            </a>
+
+            <button mat-icon-button type="button" aria-label="Fechar menu" (click)="drawer.close()">
+                <mat-icon>close</mat-icon>
+            </button>
+
+        </div>
+
+        <nav class="sidenav-nav" aria-label="Assuntos do portal no celular">
+
+            <a mat-list-item routerLink="/" routerLinkActive="active-sidenav-link"
+                [routerLinkActiveOptions]="{ exact: true }" (click)="drawer.close()">
+                Início
+            </a>
+
+            @if (categories$ | async; as categories) {
+                @for (category of categories; track category.id) {
+                <a mat-list-item [routerLink]="['/noticias', category.slug]" routerLinkActive="active-sidenav-link"
+                    (click)="drawer.close()">
+                    {{ category.name }}
+                </a>
+                }
+            }
+
+            <a mat-list-item routerLink="/noticias" routerLinkActive="active-sidenav-link" (click)="drawer.close()">
+                Todos os assuntos
+            </a>
+
+        </nav>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+
+        <header class="site-header">
+            <mat-toolbar class="toolbar">
+                <a class="brand" routerLink="/" aria-label="Ir para a página inicial do portal">
+                    {{ portal.name }}
+                </a>
+
+                <div class="desktop-nav-area">
+                    @if (canScrollLeft()) {
+                    <button class="nav-arrow nav-arrow-left" mat-icon-button type="button"
+                        aria-label="Ver assuntos anteriores" (click)="scrollNav('left')">
+                        <mat-icon fontIcon="chevron_left"></mat-icon>
+                    </button>
+                    }
+
+                    <nav #desktopNav class="desktop-nav" aria-label="Assuntos do portal"
+                        (scroll)="updateNavScrollButtons()">
+                        <a mat-button routerLink="/" routerLinkActive="active-link"
+                            [routerLinkActiveOptions]="{ exact: true }">
+                            Início
+                        </a>
+
+                        @if (categories$ | async; as categories) {
+                            @for (category of categories; track category.id) {
+                            <a mat-button [routerLink]="['/noticias', category.slug]" routerLinkActive="active-link">
+                                {{ category.name }}
+                            </a>
+                            }
+                        }
+
+                        <a mat-button routerLink="/noticias" routerLinkActive="active-link">
+                            Todos
+                        </a>
+                    </nav>
+
+                    @if (canScrollRight()) {
+                    <button class="nav-arrow nav-arrow-right" mat-icon-button type="button"
+                        aria-label="Ver mais assuntos" (click)="scrollNav('right')">
+                        <mat-icon fontIcon="chevron_right"></mat-icon>
+                    </button>
+                    }
+                </div>
+                <button class="mobile-menu-button" mat-icon-button type="button" aria-label="Abrir menu de assuntos"
+                    (click)="drawer.open()">
+                    <mat-icon fontIcon="menu"></mat-icon>
+                </button>
+            </mat-toolbar>
+
+        </header>
+
+        <main class="main-content">
+            <router-outlet />
+        </main>
+
+        <footer class="site-footer">
+            <p>© 2026 {{ portal.name }}. {{ portal.description }}</p>
+        </footer>
+
+    </mat-sidenav-content>
+    
+</mat-sidenav-container>

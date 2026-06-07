@@ -1,0 +1,153 @@
+
+.site-header {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+
+/* SOMENTE O CONTEÚDO COM MARGEM LATERAL */
+.main-content {
+  width: min(100% - 2rem, 1180px);
+  margin-inline: auto;
+  padding: 2rem 0 4rem;
+}
+
+/* FOOTER 100% FLUIDO */
+.site-footer {
+  width: 100%;
+  margin: 0;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  color: #64748b;
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+  background: #ffffff;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.toolbar {
+  max-width: 1180px;
+  min-height: 64px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.brand {
+  flex: 0 0 auto;
+  max-width: 260px;
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: #111827;
+  text-decoration: none;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.desktop-nav-area {
+  margin-left: auto;
+  min-width: 0;
+  max-width: 760px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.desktop-nav {
+   min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  scroll-behavior: smooth;
+
+  scrollbar-width: none;
+}
+
+.desktop-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.desktop-nav:active {
+  cursor: grabbing;
+}
+
+.desktop-nav a {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  pointer-events: auto;
+}
+
+.nav-arrow {
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  background: #f8fafc;
+  color: #2563eb;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+}
+
+.nav-arrow mat-icon {
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+}
+
+.active-link {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.mobile-menu-button {
+  display: none;
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  margin-left: auto;
+}
+.sidenav-header{
+  background-color: #ffffff;
+  
+}
+.sidenav-nav{
+   background-color: #ffffff;
+
+  }
+  .sidenav-nav a{
+    background-color: #ffffff;
+    text-decoration: none;
+    color: #111827;
+}
+@media (max-width: 768px) {
+  .desktop-nav-area {
+    display: none;
+  }
+
+  .mobile-menu-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .brand {
+    max-width: calc(100vw - 96px);
+  }
+}

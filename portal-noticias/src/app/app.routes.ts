@@ -2,10 +2,10 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-//     path: '',
-//     loadComponent: () =>
-//       import('./public/layout/public-layout.component')
-//         .then(m => m.PublicLayoutComponent),
+    path: '',
+    loadComponent: () =>
+      import('./public/layout/public-layout.component')
+        .then(m => m.PublicLayoutComponent),
 //     children: [
 //       {
 //         path: '',
