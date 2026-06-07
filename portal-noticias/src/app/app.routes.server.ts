@@ -5,10 +5,10 @@ export const serverRoutes: ServerRoute[] = [
     path: '',
     renderMode: RenderMode.Server,
   },
-  // {
-  //   path: 'noticias',
-  //   renderMode: RenderMode.Server,
-  // },
+  {
+    path: 'noticias',
+    renderMode: RenderMode.Server,
+  },
   // {
   //   path: 'noticias/:slug',
   //   renderMode: RenderMode.Server,

@@ -13,12 +13,12 @@ export const routes: Routes = [
           import('./public/pages/home/home-page.component')
             .then(m => m.HomePageComponent),
       },
-  //     {
-  //       path: 'noticias',
-  //       loadComponent: () =>
-  //         import('./public/pages/category-list/category-list-page.component')
-  //           .then(m => m.CategoriesListPageComponent),
-  //     },
+      {
+        path: 'noticias',
+        loadComponent: () =>
+          import('./public/pages/category-list/category-list-page.component')
+            .then(m => m.CategoriesListPageComponent),
+      },
   //     {
   //       path: 'noticias/:slug',
   //       loadComponent: () =>

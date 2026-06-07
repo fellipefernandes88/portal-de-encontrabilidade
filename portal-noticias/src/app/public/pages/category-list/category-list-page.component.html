@@ -1,0 +1,56 @@
+<section class="page-header">
+
+  <p class="eyebrow">Notícias</p>
+
+  <h1>Explore as notícias por assunto</h1>
+
+</section>
+
+@if (categories$ | async; as categories) {
+
+  @if (categories.length > 0) {
+
+    <section class="categories-grid" aria-label="Lista de categorias">
+      @for (category of categories; track category.id) {
+        <mat-card class="category-card" appearance="outlined">
+          <mat-card-content>
+            <div class="icon-box">
+              <mat-icon aria-hidden="true">folder_open</mat-icon>
+            </div>
+
+            <h2>{{ category.name }}</h2>
+
+            <p>
+              Veja as principais notícias publicadas na categoria
+              <strong>{{ category.name }}</strong>.
+            </p>
+          </mat-card-content>
+
+          <mat-card-actions>
+            <a
+              mat-flat-button
+              color="primary"
+              [routerLink]="['/noticias', category.slug]"
+              [attr.aria-label]="'Ver notícias da categoria ' + category.name"
+            >
+              Ver notícias
+              <mat-icon>arrow_forward</mat-icon>
+            </a>
+          </mat-card-actions>
+        </mat-card>
+      }
+    </section>
+  } @else {
+    <section class="empty-state">
+
+      <mat-icon aria-hidden="true">category</mat-icon>
+
+      <h2>Nenhuma notícia encontrada</h2>
+
+      <p>Ainda não existem notícias cadastradas no portal.</p>
+      
+    </section>
+  }
+} @else {
+  <mat-progress-bar mode="indeterminate" />
+}
