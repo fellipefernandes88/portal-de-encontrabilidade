@@ -1,0 +1,35 @@
+@if (notice$ | async; as notice) {
+
+<article class="article">
+
+    <nav class="breadcrumb" aria-label="Caminho da página">
+        <a routerLink="/">Início</a>
+        <span>/</span>
+        <a [routerLink]="['/noticias', notice.category?.slug]">
+            {{ notice.category?.name }}
+        </a>
+    </nav>
+
+    <header class="article-header">
+
+        <mat-chip-set>
+            <mat-chip>{{ notice.category?.name }}</mat-chip>
+        </mat-chip-set>
+
+        <h1>{{ notice.title }}</h1>
+
+        <p class="description">{{ notice.description }}</p>
+
+        <p class="date">
+            Publicado em {{ notice.created_at | date: 'dd/MM/yyyy HH:mm' }}
+        </p>
+    </header>
+
+    <img class="cover" [src]="newsService.imageUrl(notice.path_image)" [alt]="notice.title" fetchpriority="high" />
+
+    <section class="content">
+        <p>{{ notice.notice }}</p>
+    </section>
+    
+</article>
+}

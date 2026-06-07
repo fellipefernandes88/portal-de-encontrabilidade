@@ -25,12 +25,12 @@ export const routes: Routes = [
   //         import('./public/pages/category-page/category-page.component')
   //           .then(m => m.CategoryPageComponent),
   //     },
-  //     {
-  //       path: 'noticia/:slug',
-  //       loadComponent: () =>
-  //         import('./public/pages/notice-page/notice-page.component')
-  //           .then(m => m.NoticePageComponent),
-  //     },
+      {
+        path: 'noticia/:slug',
+        loadComponent: () =>
+          import('./public/pages/notice-page/notice-page.component')
+            .then(m => m.NoticePageComponent),
+      },
     ],
   },
   {

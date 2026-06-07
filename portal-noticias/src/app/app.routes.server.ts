@@ -13,10 +13,10 @@ export const serverRoutes: ServerRoute[] = [
   //   path: 'noticias/:slug',
   //   renderMode: RenderMode.Server,
   // },
-  // {
-  //   path: 'noticia/:slug',
-  //   renderMode: RenderMode.Server,
-  // },
+  {
+    path: 'noticia/:slug',
+    renderMode: RenderMode.Server,
+  },
   // {
   //   path: 'noticias',
   //   renderMode: RenderMode.Server,
