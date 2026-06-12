@@ -35,7 +35,8 @@
             }
             }
 
-            <a mat-list-item routerLink="/noticias" routerLinkActive="active-sidenav-link" (click)="drawer.close()">
+            <a mat-list-item routerLink="/noticias" routerLinkActive="active-sidenav-link"
+                [routerLinkActiveOptions]="{ exact: true }" (click)="drawer.close()">
                 Todos os assuntos
             </a>
 
@@ -73,7 +74,8 @@
                         }
                         }
 
-                        <a mat-button routerLink="/noticias" routerLinkActive="active-link">
+                        <a mat-button routerLink="/noticias" routerLinkActive="active-link"
+                            [routerLinkActiveOptions]="{ exact: true }">
                             Todos
                         </a>
                     </nav>
