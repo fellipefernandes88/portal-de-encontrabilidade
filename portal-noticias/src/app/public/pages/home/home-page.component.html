@@ -7,7 +7,7 @@
 
     <section class="featured-area">
         <article class="featured-news">
-            <a class="featured-image-link" [routerLink]="['/noticias', featured.slug]"
+            <a class="featured-image-link" [routerLink]="['/noticia', featured.slug]"
                 [attr.aria-label]="'Ler notícia: ' + featured.title">
                 <img [src]="newsService.imageUrl(featured.path_image)" [alt]="featured.title" fetchpriority="high" />
             </a>
@@ -22,7 +22,7 @@
                 }
 
                 <h1>
-                    <a [routerLink]="['/noticias', featured.slug]">
+                    <a [routerLink]="['/noticia', featured.slug]">
                         {{ featured.title }}
                     </a>
                 </h1>
