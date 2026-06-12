@@ -48,6 +48,7 @@ export class PublicNewsService {
       .get<{ data: Notice }>(`${this.apiUrl}/public/notices/${slug}`)
       .pipe(map(response => response.data));
   }
+
   latestNotices(page = 1, perPage = 12) {
     return this.http.get<PaginatedResponse<Notice>>(
       `${this.apiUrl}/public/notices`,
@@ -60,8 +61,20 @@ export class PublicNewsService {
     );
   }
 
+  search(term: string, perPage = 9) {
+    return this.http.get<PaginatedResponse<Notice>>(
+      `${this.apiUrl}/public/notices/search`,
+      {
+        params: {
+          q: term,
+          per_page: String(perPage),
+        },
+      }
+    );
+  }
+
   imageUrl(path?: string | null): string {
-    
+
     if (!path) {
       return `${environment.portal.url}/assets/images/news-placeholder.webp`;
     }

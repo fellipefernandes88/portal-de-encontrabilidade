@@ -1,0 +1,23 @@
+<mat-form-field class="search-field" appearance="outline" subscriptSizing="dynamic">
+    <mat-icon matPrefix>search</mat-icon>
+
+    <input type="text" matInput placeholder="Buscar notícias..." [formControl]="searchControl" [matAutocomplete]="auto"
+        aria-label="Buscar notícias" />
+
+    <mat-autocomplete #auto="matAutocomplete">
+        @for (notice of suggestions$ | async; track notice.id) {
+        <mat-option [value]="notice.title" (onSelectionChange)="goToNotice(notice)">
+            <div class="suggestion-item">
+                <span class="suggestion-title">{{ notice.title }}</span>
+                @if (notice.category) {
+                <span class="suggestion-category">{{ notice.category.name }}</span>
+                }
+            </div>
+        </mat-option>
+        } @empty {
+        @if (searchControl.value && searchControl.value.length >= 2) {
+        <mat-option disabled>Nenhuma notícia encontrada</mat-option>
+        }
+        }
+    </mat-autocomplete>
+</mat-form-field>

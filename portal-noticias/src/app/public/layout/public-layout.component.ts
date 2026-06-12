@@ -19,6 +19,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { environment } from '../../../environments/environment';
 import { PublicNewsService } from '../../core/services/public-news.service';
 
+import { SearchBarComponent } from '../components/search-bar/search-bar.component';
+
 @Component({
   selector: 'app-public-layout',
   standalone: true,
@@ -33,6 +35,8 @@ import { PublicNewsService } from '../../core/services/public-news.service';
     MatListModule,
     MatSidenavModule,
     MatToolbarModule,
+
+    SearchBarComponent,
   ],
   templateUrl: './public-layout.component.html',
   styleUrl: './public-layout.component.scss',
@@ -88,5 +92,5 @@ export class PublicLayoutComponent implements AfterViewInit {
     this.canScrollLeft.set(nav.scrollLeft > 4);
     this.canScrollRight.set(nav.scrollLeft < maxScrollLeft - 4);
   }
-  
+
 }

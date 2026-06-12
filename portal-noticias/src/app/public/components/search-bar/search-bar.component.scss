@@ -1,0 +1,76 @@
+.search-field {
+    width: 100%;
+    max-width: 320px;
+    font-size: 14px;
+
+    /* Cápsula editorial: pílula suave em vez de retângulo duro */
+    ::ng-deep .mdc-notched-outline > * {
+        border-color: var(--line) !important;
+    }
+
+    ::ng-deep .mdc-notched-outline__leading {
+        border-radius: 999px 0 0 999px !important;
+        min-width: 22px !important;
+    }
+
+    ::ng-deep .mdc-notched-outline__trailing {
+        border-radius: 0 999px 999px 0 !important;
+    }
+
+    /* Fundo levemente destacado do papel */
+    ::ng-deep .mat-mdc-text-field-wrapper {
+        background: var(--paper-card);
+        border-radius: 999px;
+        transition: box-shadow 200ms ease;
+    }
+
+    /* No foco: anel vermelho editorial + leve brilho */
+    &.mat-focused ::ng-deep .mdc-notched-outline > * {
+        border-color: var(--accent) !important;
+        border-width: 2px !important;
+    }
+
+    &.mat-focused ::ng-deep .mat-mdc-text-field-wrapper {
+        box-shadow: 0 0 0 4px var(--accent-soft);
+    }
+
+    /* Lupa na cor da tinta, ganhando vida no foco */
+    ::ng-deep .mat-icon {
+        color: var(--ink-muted);
+        transition: color 200ms ease;
+    }
+
+    &.mat-focused ::ng-deep .mat-icon {
+        color: var(--accent);
+    }
+
+    /* Texto e placeholder alinhados ao tema */
+    ::ng-deep input.mat-mdc-input-element {
+        font-family: var(--font-body);
+        color: var(--ink);
+
+        &::placeholder {
+            color: var(--ink-muted);
+        }
+    }
+}
+
+.suggestion-item {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.3;
+    padding: 4px 0;
+}
+
+.suggestion-title {
+    font-weight: 600;
+    font-family: var(--font-body);
+}
+
+.suggestion-category {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    font-weight: 700;
+}
